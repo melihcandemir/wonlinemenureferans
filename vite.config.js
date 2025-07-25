@@ -11,11 +11,11 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: undefined
-      }
-    }
+        manualChunks: undefined,
+      },
+    },
   },
   define: {
-    global: 'globalThis',
+    global: "globalThis",
   },
 });
