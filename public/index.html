@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Referans Listesi</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://wonlinemenu.com/wp-content/uploads/2023/09/cropped-icon2021-192x192.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <main class="flex-grow py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-center mb-6">
+          <img
+            src="/wonline2023.png"
+            alt="Wonline Logo"
+            class="w-[480px] md:w-[640px] h-auto object-contain"
+          />
+        </div>
+        <h1 class="text-xl font-bold text-center text-gray-800 mb-3">
+          Referans Listesi
+        </h1>
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+          <ul id="referansList" class="space-y-3">
+            <!-- Referanslar JavaScript ile buraya eklenecek -->
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="mb-4 md:mb-0">
+            <p class="text-sm">© 2025 Wonline Menu. Tüm hakları saklıdır.</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a
+              href="https://wonlinemenu.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-green-400 hover:text-green-700 transition-colors duration-300"
+            >
+              wonlinemenu.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+      const supabaseUrl = "https://waawofaxbwrwpuysblxu.supabase.co";
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndhYXdvZmF4Yndyd3B1eXNibHh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM0NzU1NTYsImV4cCI6MjA2OTA1MTU1Nn0.kQsYKo-MkH7Cvl-hsXTqOf8LoroZRZx4tYUsVB3vIzo";
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      async function loadReferences() {
+        const { data, error } = await supabase
+          .from("wonlinemenu_references")
+          .select("*")
+          .order("id", { ascending: true });
+
+        if (error) {
+          console.error("Error loading references:", error);
+          return;
+        }
+
+        const referansList = document.getElementById("referansList");
+        referansList.innerHTML = "";
+
+        data.forEach((ref) => {
+          const li = document.createElement("li");
+          li.className =
+            "p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors";
+          li.innerHTML = `
+            <a
+              href="https://${ref.referans}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-green-700 hover:text-green-800 flex items-center justify-between"
+            >
+              <span>${ref.referans}</span>
+              <span class="text-green-700">→</span>
+            </a>
+          `;
+          referansList.appendChild(li);
+        });
+      }
+
+      // İlk yükleme
+      loadReferences();
+
+      // Her 5 dakikada bir güncelle
+      setInterval(loadReferences, 5 * 60 * 1000);
+    </script>
+  </body>
+</html>
