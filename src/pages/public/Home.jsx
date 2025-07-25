@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../config/supabase";
+import logoImg from "../../assets/wonline2023.png";
 
 export default function Home() {
   const [references, setReferences] = useState([]);
@@ -31,7 +32,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-6">
             <img
-              src="/wonline2023.png"
+              src={logoImg}
               alt="Wonline Logo"
               className="w-[480px] md:w-[640px] h-auto object-contain"
             />

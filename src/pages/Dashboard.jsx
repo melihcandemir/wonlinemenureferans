@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../config/supabase";
+import logoImg from "../assets/wonline2023.png";
 
 export default function Dashboard() {
   const { signOut } = useAuth();
@@ -30,11 +31,7 @@ export default function Dashboard() {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <img
-                  className="h-8 w-auto"
-                  src="/wonline2023.png"
-                  alt="Wonline Logo"
-                />
+                <img className="h-8 w-auto" src={logoImg} alt="Wonline Logo" />
               </div>
             </div>
             <div className="flex items-center">
