@@ -109,13 +109,13 @@ export default function References() {
             <div className="flex items-center">
               <button
                 onClick={() => navigate("/admin/dashboard")}
-                className="text-sm text-white bg-green-700 hover:bg-green-800 border rounded-md mx-2 px-2 py-1"
+                className="text-sm text-white bg-green-700 hover:bg-green-800 border rounded-md mx-1 px-1.5 py-1 ml-1"
               >
                 Dashboard
               </button>
               <button
                 onClick={() => signOut()}
-                className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-2 px-2 py-1"
+                className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-1 px-1.5 py-1"
               >
                 Çıkış Yap
               </button>
