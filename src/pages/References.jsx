@@ -168,13 +168,13 @@ export default function References() {
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => updateReference(ref.id)}
-                          className="text-sm text-white bg-green-600 hover:bg-green-700 border rounded-md mx-2 px-2 py-1"
+                          className="text-sm text-white bg-green-600 hover:bg-green-700 border rounded-md mx-1 px-2 py-1 ml-1"
                         >
                           Kaydet
                         </button>
                         <button
                           onClick={cancelEditing}
-                          className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-2 px-2 py-1"
+                          className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-1 px-2 py-1 ml-1"
                         >
                           İptal
                         </button>
@@ -188,13 +188,13 @@ export default function References() {
                       <div className="flex items-center space-x-4">
                         <button
                           onClick={() => startEditing(ref)}
-                          className="text-sm text-white bg-indigo-600 hover:bg-indigo-700 border rounded-md mx-2 px-2 py-1"
+                          className="text-sm text-white bg-indigo-600 hover:bg-indigo-700 border rounded-md mx-1 px-2 py-1 ml-1"
                         >
                           Düzenle
                         </button>
                         <button
                           onClick={() => deleteReference(ref.id)}
-                          className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-2 px-2 py-1"
+                          className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-1 px-2 py-1 ml-1"
                         >
                           Sil
                         </button>
