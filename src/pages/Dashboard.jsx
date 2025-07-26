@@ -37,13 +37,13 @@ export default function Dashboard() {
             <div className="flex items-center">
               <button
                 onClick={() => navigate("/admin/references")}
-                className="mr-4 px-4 py-2 text-sm font-medium bg-emerald-700 text-white hover:bg-emerald-800 border rounded-md"
+                className="text-sm text-white bg-green-700 hover:bg-green-800 border rounded-md mx-2 px-2 py-1"
               >
                 Referanslar
               </button>
               <button
                 onClick={() => signOut()}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+                className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-2 px-2 py-1"
               >
                 Çıkış Yap
               </button>

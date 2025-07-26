@@ -109,13 +109,13 @@ export default function References() {
             <div className="flex items-center">
               <button
                 onClick={() => navigate("/admin/dashboard")}
-                className="mr-4 px-4 py-2 text-sm font-medium  bg-emerald-700 text-white hover:bg-emerald-800 border rounded-md"
+                className="text-sm text-white bg-green-700 hover:bg-green-800 border rounded-md mx-2 px-2 py-1"
               >
                 Dashboard
               </button>
               <button
                 onClick={() => signOut()}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+                className="text-sm text-white bg-red-600 hover:bg-red-700 border rounded-md mx-2 px-2 py-1"
               >
                 Çıkış Yap
               </button>
@@ -138,7 +138,7 @@ export default function References() {
                 type="text"
                 value={newReference}
                 onChange={(e) => setNewReference(e.target.value)}
-                placeholder="Yeni referans ekle örneğin: wonline.com - başında bulunan www. ve https// gibi eklentiler olmasın."
+                placeholder="Yeni referans ekle (wonline.com)"
                 className="flex-1 shadow-sm border focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-indigo-500 rounded-md px-2"
               />
               <button
