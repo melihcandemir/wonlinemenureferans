@@ -23,7 +23,7 @@ export default function References() {
       const { data, error } = await supabase
         .from("wonlinemenu_references")
         .select("*")
-        .order("id", { ascending: true });
+        .order("updated_at", { ascending: false });
 
       if (error) throw error;
       setReferences(data);
@@ -37,9 +37,14 @@ export default function References() {
   const addReference = async (e) => {
     e.preventDefault();
     try {
-      const { error } = await supabase
-        .from("wonlinemenu_references")
-        .insert([{ referans: newReference }]);
+      const now = new Date().toISOString();
+      const { error } = await supabase.from("wonlinemenu_references").insert([
+        {
+          referans: newReference,
+          created_at: now,
+          updated_at: now,
+        },
+      ]);
 
       if (error) throw error;
 
@@ -79,7 +84,10 @@ export default function References() {
     try {
       const { error } = await supabase
         .from("wonlinemenu_references")
-        .update({ referans: editingValue })
+        .update({
+          referans: editingValue,
+          updated_at: new Date().toISOString(),
+        })
         .eq("id", id);
 
       if (error) throw error;
