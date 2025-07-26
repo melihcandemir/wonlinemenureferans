@@ -52,11 +52,18 @@ export default function References() {
 
   const addReference = async (e) => {
     e.preventDefault();
+
+    // Boş değer kontrolü
+    if (!newReference.trim()) {
+      setError("Referans alanı boş bırakılamaz!");
+      return;
+    }
+
     try {
       const now = new Date().toISOString();
       const { error } = await supabase.from("wonlinemenu_references").insert([
         {
-          referans: newReference,
+          referans: newReference.trim(),
           created_at: now,
           updated_at: now,
         },
@@ -65,6 +72,7 @@ export default function References() {
       if (error) throw error;
 
       setNewReference("");
+      setError(null); // Başarılı olduğunda hata mesajını temizle
       fetchReferences();
     } catch (error) {
       setError("Referans eklenirken bir hata oluştu: " + error.message);
@@ -72,6 +80,15 @@ export default function References() {
   };
 
   const deleteReference = async (id) => {
+    // Silme onayı iste
+    const confirmed = window.confirm(
+      "Bu referansı silmek istediğinizden emin misiniz?"
+    );
+
+    if (!confirmed) {
+      return; // Kullanıcı iptal etti
+    }
+
     try {
       const { error } = await supabase
         .from("wonlinemenu_references")
@@ -80,6 +97,7 @@ export default function References() {
 
       if (error) throw error;
 
+      setError(null); // Başarılı olduğunda hata mesajını temizle
       fetchReferences();
     } catch (error) {
       setError("Referans silinirken bir hata oluştu: " + error.message);
@@ -94,14 +112,21 @@ export default function References() {
   const cancelEditing = () => {
     setEditingId(null);
     setEditingValue("");
+    setError(null); // İptal edildiğinde hata mesajını temizle
   };
 
   const updateReference = async (id) => {
+    // Boş değer kontrolü
+    if (!editingValue.trim()) {
+      setError("Referans alanı boş bırakılamaz!");
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from("wonlinemenu_references")
         .update({
-          referans: editingValue,
+          referans: editingValue.trim(),
           updated_at: new Date().toISOString(),
         })
         .eq("id", id);
@@ -110,6 +135,7 @@ export default function References() {
 
       setEditingId(null);
       setEditingValue("");
+      setError(null); // Başarılı olduğunda hata mesajını temizle
       fetchReferences();
     } catch (error) {
       setError("Referans güncellenirken bir hata oluştu: " + error.message);
