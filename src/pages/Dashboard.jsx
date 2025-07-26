@@ -8,6 +8,7 @@ export default function Dashboard() {
   const { signOut } = useAuth();
   const navigate = useNavigate();
   const [totalReferences, setTotalReferences] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     // Referans sayısını al
@@ -22,7 +23,19 @@ export default function Dashboard() {
     };
 
     fetchTotalReferences();
+
+    // Scroll event listener
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -68,6 +81,17 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Scroll to top button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+          title="Başa dön"
+        >
+          ↑
+        </button>
+      )}
     </div>
   );
 }
