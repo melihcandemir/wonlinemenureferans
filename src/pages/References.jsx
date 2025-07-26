@@ -23,7 +23,7 @@ export default function References() {
       const { data, error } = await supabase
         .from("wonlinemenu_references")
         .select("*")
-        .order("id", { ascending: false });
+        .order("id", { ascending: true });
 
       if (error) throw error;
       setReferences(data);

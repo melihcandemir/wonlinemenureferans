@@ -16,7 +16,7 @@ export default function Home() {
     const { data, error } = await supabase
       .from("wonlinemenu_references")
       .select("*")
-      .order("id", { ascending: false });
+      .order("id", { ascending: true });
 
     if (error) {
       console.error("Error loading references:", error);
