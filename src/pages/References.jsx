@@ -160,7 +160,13 @@ export default function References() {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <img className="h-8 w-auto" src={logoImg} alt="Wonline Logo" />
+                <img
+                  className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                  src={logoImg}
+                  alt="Wonline Logo"
+                  onClick={() => window.open("/", "_blank")}
+                  title="Ana sayfaya git"
+                />
               </div>
             </div>
             <div className="flex items-center">
