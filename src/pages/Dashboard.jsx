@@ -48,7 +48,12 @@ export default function Dashboard() {
                   className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200"
                   src={logoImg}
                   alt="Wonline Logo"
-                  onClick={() => window.open("/", "_blank")}
+                  onClick={() =>
+                    window.open(
+                      "https://melihcandemir.github.io/wonlinemenureferans/",
+                      "_blank"
+                    )
+                  }
                   title="Ana sayfaya git"
                 />
               </div>
