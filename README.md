@@ -71,14 +71,6 @@ Wonline Menu Referans Sistemi, web sitesi referanslarını yönetmek için geli�
 - **GitHub Actions** - CI/CD pipeline
 - **HashRouter** - SPA routing için GitHub Pages uyumluluğu
 
-## 🚀 Kurulum
-
-### Gereksinimler
-
-- Node.js 18+
-- npm veya yarn
-- Supabase hesabı
-
 ## 📁 Proje Yapısı
 
 ```
@@ -109,47 +101,6 @@ wonlinemenureferans/
 ├── ⚙️ vite.config.js       # Vite configuration
 ├── 🎨 tailwind.config.js   # TailwindCSS config
 └── 📦 package.json         # Dependencies
-```
-
-## 🔧 Supabase Kurulumu
-
-### 1. Tablo Oluşturma
-
-```sql
-CREATE TABLE wonlinemenu_references (
-  id BIGSERIAL PRIMARY KEY,
-  referans TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-### 2. RLS (Row Level Security) Politikaları
-
-```sql
--- Public okuma izni
-CREATE POLICY "Allow public read access" ON wonlinemenu_references
-FOR SELECT USING (true);
-
--- Authenticated kullanıcılar için tam erişim
-CREATE POLICY "Allow authenticated users full access" ON wonlinemenu_references
-FOR ALL USING (auth.role() = 'authenticated');
-```
-
-### 3. Otomatik updated_at Trigger
-
-```sql
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
-END;
-$$ language 'plpgsql';
-
-CREATE TRIGGER update_wonlinemenu_references_updated_at
-    BEFORE UPDATE ON wonlinemenu_references
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
 
 ## 📋 Admin Kullanım Kılavuzu
